@@ -34,6 +34,7 @@
 - 然后在此仓库```Settings```->```Secrets```中添加个名字为```GH_TOKEN```的Secret,填入token获得的key
 
 - Telegram通知```Settings```->```Secrets```中添加个名字为```TELEGRAM_TO```和```TELEGRAM_TOKEN```，值分别为BOT_USER _ID和BOT_TOKEN
+- Push微信通知```Settings```->```Secrets```中添加个名字为```PUSH_PLUS_TOKEN```，值为pushplus官网获取到的APP_TOKEN
 ----
 
 
