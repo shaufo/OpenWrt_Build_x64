@@ -17,11 +17,11 @@
 ## 项目说明 [![](https://github.com/gxnas/OpenWrt_Build_x64/blob/main/personal/describes.svg)](#项目说明-)
 - 固件来源：[![Lean](https://img.shields.io/badge/Lede-Lean-red.svg?style=flat&logo=appveyor)](https://github.com/coolsnowwolf/lede) 
 - 项目使用 Github Actions 拉取 [Lean](https://github.com/coolsnowwolf/lede) 的 `Openwrt` 源码仓库进行云编译
-- 🔴[OpenWrt_2305/1806_x64_全功能版] 固件默认的IP地址：`192.168.18.1` 默认密码：`无密码`
-- 🔴[OpenWrt_2305/1806_x64_主路由版] 固件默认 IP 地址：`192.168.18.1` 默认密码：`无密码`
-- 🔴[OpenWrt_2305/1806_x64_旁路由版] 固件默认 IP 地址：`192.168.1.11` 默认密码：`无密码`
-- 🔴[OpenWrt_2305/1806_x64_精简版] 固件默认 IP 地址：`192.168.1.11` 默认密码：`无密码`
-- 🔴[OpenWrt_2305/1806_x64_测试版] 固件默认 IP 地址：`192.168.1.11` 默认密码：`无密码`
+- 🔴[OpenWrt_2305_x64_全功能版] 固件默认的IP地址：`192.168.18.1` 默认密码：`无密码`
+- 🔴[OpenWrt_2305_x64_主路由版] 固件默认 IP 地址：`192.168.18.1` 默认密码：`无密码`
+- 🔴[OpenWrt_2305_x64_旁路由版] 固件默认 IP 地址：`192.168.1.11` 默认密码：`无密码`
+- 🔴[OpenWrt_2305_x64_精简版] 固件默认 IP 地址：`192.168.1.11` 默认密码：`无密码`
+- 🔴[OpenWrt_2305_x64_测试版] 固件默认 IP 地址：`192.168.1.11` 默认密码：`无密码`
 -  本库编译的x86固件为squashfs格式；
 -  ext4 与squashfs 格式的区别： ext4 格式的rootfs 可以扩展磁盘空间大小，而squashfs 不能。 squashfs 格式的rootfs 可以使用重置功能（恢复出厂设置），而ext4 不能。
 -  默认的固件容量：Kernel=32M、rootfs=968M，请确保你的OpenWrt硬盘空间至少要有1G以上；
