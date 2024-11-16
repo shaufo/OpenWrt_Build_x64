@@ -73,9 +73,14 @@ git clone --depth=1 -b js https://github.com/lwb1978/luci-theme-kucat package/lu
 # 更改argon主题背景
 cp -f $GITHUB_WORKSPACE/personal/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
-# 显示增加编译时间
+# 增加编译时间
+echo "原始的zzz-default-settings文件内容为："
+cat package/lean/default-settings/files/zzz-default-settings
 sed -i 's/DISTRIB_REVISION=.*/DISTRIB_REVISION='\''R'$(TZ=Asia/Shanghai date "+%Y.%m.%d")'\''/g' package/lean/default-settings/files/zzz-default-settings
 sed -i 's/LEDE/OpenWrt_2305_x64_精简版 by GXNAS build/g' package/lean/default-settings/files/zzz-default-settings
+echo "zzz-default-settings文件替换完成："
+echo "增加编译时间后的zzz-default-settings文件内容为："
+cat package/lean/default-settings/files/zzz-default-settings
 
 # 修改右下角脚本版本信息
 sed -i 's/<a class=\"luci-link\" href=\"https:\/\/github.com\/openwrt\/luci\" target=\"_blank\">Powered by <%= ver.luciname %> (<%= ver.luciversion %>)<\/a>/OpenWrt_2305_x64_测试版 by GXNAS build @R'"$build_date"'/' package/luci-theme-argon/luasrc/view/themes/argon/footer.htm
