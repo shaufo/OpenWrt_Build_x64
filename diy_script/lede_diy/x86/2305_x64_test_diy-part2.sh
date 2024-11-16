@@ -76,8 +76,8 @@ cp -f $GITHUB_WORKSPACE/personal/bg1.jpg package/luci-theme-argon/htdocs/luci-st
 # 增加编译时间
 echo "原始的zzz-default-settings文件内容为："
 cat package/lean/default-settings/files/zzz-default-settings
-#sed -i 's/DISTRIB_REVISION=.*/DISTRIB_REVISION='R$(TZ=Asia/Shanghai date "+%Y.%m.%d")'/' package/lean/default-settings/files/zzz-default-settings
-sed -i "s/DISTRIB_REVISION='R[0-9.]*'/DISTRIB_REVISION='R$(date -d 'TZ=\"Asia/Shanghai\"' +%Y.%m.%d)'/g" package/lean/default-settings/files/zzz-default-settings
+#sed -i 's/DISTRIB_REVISION=.*/DISTRIB_REVISION='\''R'$(TZ=Asia/Shanghai date "+%Y.%m.%d")'\''/g' package/lean/default-settings/files/zzz-default-settings
+sed -i "s/R[0-9.]*/@R$build_date/g" package/lean/default-settings/files/zzz-default-settings
 sed -i 's/LEDE/OpenWrt_2305_x64_精简版 by GXNAS build/g' package/lean/default-settings/files/zzz-default-settings
 echo "zzz-default-settings文件替换完成："
 echo "增加编译时间后的zzz-default-settings文件内容为："
