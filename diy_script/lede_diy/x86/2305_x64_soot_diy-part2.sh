@@ -74,7 +74,7 @@ git clone --depth=1 -b js https://github.com/lwb1978/luci-theme-kucat package/lu
 cp -f $GITHUB_WORKSPACE/personal/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
 # 显示增加编译时间
-sed -i 's/DISTRIB_REVISION=.*/DISTRIB_REVISION='\''R'$(TZ=Asia/Shanghai date "+%Y.%m.%d")'\''/g' package/lean/default-settings/files/zzz-default-settings
+sed -i "s/DISTRIB_REVISION='R[0-9]\+\.[0-9]\+\.[0-9]\+'/DISTRIB_REVISION='@R$build_date'/g" package/lean/default-settings/files/zzz-default-settings
 sed -i 's/LEDE/OpenWrt_2305_x64_精简版 by GXNAS build/g' package/lean/default-settings/files/zzz-default-settings
 
 # 修改右下角脚本版本信息
