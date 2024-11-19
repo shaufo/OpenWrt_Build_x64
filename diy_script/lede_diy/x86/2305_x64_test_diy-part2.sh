@@ -63,12 +63,6 @@ rm -rf package/feeds/packages/adguardhome
 rm -rf feeds/luci/applications/luci-app-turboacc
 merge_package master https://github.com/xiangfeidexiaohuo/extra-ipk package/custom luci-app-adguardhome patch/luci-app-turboacc patch/wall-luci/lua-maxminddb patch/wall-luci/luci-app-vssr
 
-# ddns-go 动态域名
-# git clone --depth=1 https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
-
-# chatgpt
-git clone --depth=1 https://github.com/sirpdboy/luci-app-chatgpt-web package/luci-app-chatgpt
-
 # lucky 大吉
 rm -rf feeds/packages/net/lucky
 git clone --depth=1 https://github.com/gdy666/luci-app-lucky.git package/luci-app-lucky
@@ -80,15 +74,9 @@ merge_package master https://github.com/linkease/nas-packages package/custom net
 # OpenAppFilter 应用过滤
 git clone --depth=1 https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
 
-# autotimeset 定时
-# git clone --depth=1 https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
-
 # dockerman
 # rm -rf feeds/luci/applications/luci-app-dockerman
 # git clone --depth=1 https://github.com/lisaac/luci-app-dockerman.git package/luci-app-dockerman
-
-# eqos 限速
-# merge_package master https://github.com/kenzok8/openwrt-packages package/custom luci-app-eqos
 
 # poweroff
 git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
@@ -174,6 +162,10 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=\@GHREPO/PKG_SOURCE_URL:=https:\/\/github\.com/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=\@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload\.github\.com/g' {}
+
+# 解决Php7编译报错问题
+apt update
+apt install build-essential ccache libncurses5-dev zlib1g-dev gawk git subversion libssl-dev
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
