@@ -12,7 +12,7 @@ on:
     inputs:
       checkupdates66:
         description: '启动OpenWrt_Build_2305_x64_test编译'
-        required: false
+        required: true
         default: 'true'
   #schedule:
     #- cron: 0 2 * * 5
