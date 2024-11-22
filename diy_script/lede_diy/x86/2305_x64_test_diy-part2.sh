@@ -63,72 +63,6 @@ rm -rf package/feeds/packages/adguardhome
 rm -rf feeds/luci/applications/luci-app-turboacc
 merge_package master https://github.com/xiangfeidexiaohuo/extra-ipk package/custom luci-app-adguardhome patch/luci-app-turboacc patch/wall-luci/lua-maxminddb patch/wall-luci/luci-app-vssr
 
-# lucky 大吉
-rm -rf feeds/packages/net/lucky
-git clone --depth=1 https://github.com/gdy666/luci-app-lucky.git package/luci-app-lucky
-
-# ddnsto
-merge_package main https://github.com/linkease/nas-packages-luci package/custom luci/luci-app-ddnsto
-merge_package master https://github.com/linkease/nas-packages package/custom network/services/ddnsto
-
-# OpenAppFilter 应用过滤
-git clone --depth=1 https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
-
-# dockerman
-# rm -rf feeds/luci/applications/luci-app-dockerman
-# git clone --depth=1 https://github.com/lisaac/luci-app-dockerman.git package/luci-app-dockerman
-
-# poweroff
-git clone https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
-
-# unblockneteasemusic
-# git clone --depth=1 https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
-
-# filebrowser 文件浏览器
-merge_package main https://github.com/Lienol/openwrt-package package/custom luci-app-filebrowser
-
-# smartdns
-rm -rf feeds/packages/net/smartdns
-rm -rf feeds/luci/applications/luci-app-smartdns
-git clone --depth=1 -b lede https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
-git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
-
-# mosdns
-rm -rf feeds/packages/net/mosdns
-rm -rf feeds/luci/applications/luci-app-mosdns
-git clone --depth=1 -b v5-lua https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
-
-# alist
-rm -rf feeds/packages/net/alist
-rm -rf feeds/packages/lang/golang
-git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
-git clone --depth=1 -b lua https://github.com/sbwml/luci-app-alist package/alist
-# merge_package master https://github.com/sbwml/luci-app-alist package/custom alist
-
-# passwall
-merge_package main https://github.com/xiaorouji/openwrt-passwall package/custom luci-app-passwall
-
-# passwall2
-# merge_package main https://github.com/xiaorouji/openwrt-passwall2 package/custom luci-app-passwall2
-
-# mihomo
-# git clone --depth=1 https://github.com/morytyann/OpenWrt-mihomo package/luci-app-mihomo
-
-# homeproxy
-# git clone --depth=1 https://github.com/muink/luci-app-homeproxy.git package/luci-app-homeproxy
-
-# nekobox
-# rm -rf feeds/packages/net/sing-box
-# git clone --depth=1 -b nekobox https://github.com/Thaolga/openwrt-nekobox package/luci-app-nekobox
-
-# openclash
-merge_package master https://github.com/vernesong/OpenClash package/custom luci-app-openclash
-# merge_package dev https://github.com/vernesong/OpenClash package/custom luci-app-openclash
-# 编译 po2lmo (如果有po2lmo可跳过)
-pushd package/custom/luci-app-openclash/tools/po2lmo
-make && sudo make install
-popd
-
 # argon 主题
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-argon-config
@@ -139,14 +73,9 @@ git clone --depth=1 -b js https://github.com/lwb1978/luci-theme-kucat package/lu
 # 更改argon主题背景
 cp -f $GITHUB_WORKSPACE/personal/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
-# 增加编译时间
-echo "原始的zzz-default-settings文件内容为："
-cat package/lean/default-settings/files/zzz-default-settings
+# 显示增加编译时间
 sed -i "s/DISTRIB_REVISION='R[0-9]\+\.[0-9]\+\.[0-9]\+'/DISTRIB_REVISION='@R$build_date'/g" package/lean/default-settings/files/zzz-default-settings
-sed -i 's/LEDE/OpenWrt_2305_x64_精简版 by GXNAS build/g' package/lean/default-settings/files/zzz-default-settings
-echo "zzz-default-settings文件替换完成："
-echo "增加编译时间后的zzz-default-settings文件内容为："
-cat package/lean/default-settings/files/zzz-default-settings
+sed -i 's/LEDE/OpenWrt_2305_x64_测试版 by GXNAS build/g' package/lean/default-settings/files/zzz-default-settings
 
 # 修改右下角脚本版本信息
 sed -i 's/<a class=\"luci-link\" href=\"https:\/\/github.com\/openwrt\/luci\" target=\"_blank\">Powered by <%= ver.luciname %> (<%= ver.luciversion %>)<\/a>/OpenWrt_2305_x64_测试版 by GXNAS build @R'"$build_date"'/' package/luci-theme-argon/luasrc/view/themes/argon/footer.htm
@@ -162,10 +91,6 @@ find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/include\ \.\.\/\.\.\/lang\/golang\/golang\-package\.mk/include \$(TOPDIR)\/feeds\/packages\/lang\/golang\/golang\-package\.mk/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=\@GHREPO/PKG_SOURCE_URL:=https:\/\/github\.com/g' {}
 find package/*/ -maxdepth 2 -path "*/Makefile" | xargs -i sed -i 's/PKG_SOURCE_URL:=\@GHCODELOAD/PKG_SOURCE_URL:=https:\/\/codeload\.github\.com/g' {}
-
-# 解决Php7编译报错问题
-apt update
-apt install build-essential ccache libncurses5-dev zlib1g-dev gawk git subversion libssl-dev
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
