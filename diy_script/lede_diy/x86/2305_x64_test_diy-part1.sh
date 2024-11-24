@@ -10,7 +10,7 @@
 sed -i "/helloworld/d" feeds.conf.default
 #sed -i '$a src-git kenzok8 https://github.com/kenzok8/small-package' feeds.conf.default
 sed -i '$a src-git Jejz168 https://github.com/Jejz168/openwrt-packages' feeds.conf.default
-sed -i '$a src-git wjz304 github.com/wjz304/openwrt-packages;lede' feeds.conf.default
+sed -i '$a src-git wjz304 https://github.com/wjz304/openwrt-packages;lede' feeds.conf.default
 
 mkdir wget
 
