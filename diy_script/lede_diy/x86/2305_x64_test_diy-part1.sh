@@ -8,7 +8,8 @@
 
 # Add a feed source
 sed -i "/helloworld/d" feeds.conf.default
-sed -i '$a src-git kenzok8 https://github.com/kenzok8/small-package' feeds.conf.default
+#sed -i '$a src-git kenzok8 https://github.com/kenzok8/small-package' feeds.conf.default
+sed -i '$a src-git Jejz168 https://github.com/Jejz168/openwrt-packages' feeds.conf.default
 sed -i '$a src-git shidahuilang https://github.com/shidahuilang/openwrt-package;openwrt-23.05' feeds.conf.default
 
 mkdir wget
