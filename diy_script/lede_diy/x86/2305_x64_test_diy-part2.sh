@@ -63,6 +63,76 @@ rm -rf package/feeds/packages/adguardhome
 rm -rf feeds/luci/applications/luci-app-turboacc
 merge_package master https://github.com/xiangfeidexiaohuo/extra-ipk package/custom luci-app-adguardhome patch/luci-app-turboacc patch/wall-luci/lua-maxminddb patch/wall-luci/luci-app-vssr
 
+# ddns-go 动态域名
+# git clone --depth=1 https://github.com/sirpdboy/luci-app-ddns-go.git package/ddns-go
+
+# chatgpt
+# git clone --depth=1 https://github.com/sirpdboy/luci-app-chatgpt-web package/luci-app-chatgpt
+
+# lucky 大吉
+git clone --depth=1 https://github.com/gdy666/luci-app-lucky.git package/lucky
+
+# ddnsto
+merge_package main https://github.com/linkease/nas-packages-luci package/custom luci/luci-app-ddnsto
+merge_package master https://github.com/linkease/nas-packages package/custom network/services/ddnsto
+
+# OpenAppFilter 应用过滤
+git clone --depth=1 https://github.com/destan19/OpenAppFilter.git package/OpenAppFilter
+
+# autotimeset 定时
+# git clone --depth=1 https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
+
+# dockerman
+# rm -rf feeds/luci/applications/luci-app-dockerman
+# git clone --depth=1 https://github.com/lisaac/luci-app-dockerman.git package/luci-app-dockerman
+
+# frpc frps
+rm -rf feeds/luci/applications/{luci-app-frpc,luci-app-frps,luci-app-hd-idle,luci-app-adblock,luci-app-filebrowser}
+merge_package master https://github.com/immortalwrt/luci package/custom applications/luci-app-filebrowser applications/luci-app-syncdial applications/luci-app-eqos applications/luci-app-nps applications/luci-app-nfs applications/luci-app-frpc applications/luci-app-frps applications/luci-app-hd-idle applications/luci-app-adblock applications/luci-app-socat
+
+# unblockneteasemusic
+# git clone --depth=1 https://github.com/UnblockNeteaseMusic/luci-app-unblockneteasemusic.git package/luci-app-unblockneteasemusic
+
+# smartdns
+rm -rf feeds/packages/net/smartdns
+rm -rf feeds/luci/applications/luci-app-smartdns
+git clone --depth=1 -b master https://github.com/pymumu/luci-app-smartdns.git package/luci-app-smartdns
+git clone --depth=1 https://github.com/pymumu/openwrt-smartdns package/smartdns
+
+# mosdns
+rm -rf feeds/packages/net/mosdns
+rm -rf feeds/luci/applications/luci-app-mosdns
+git clone --depth=1 -b v5 https://github.com/sbwml/luci-app-mosdns package/luci-app-mosdns
+
+# alist
+rm -rf feeds/packages/lang/golang
+rm -rf feeds/packages/net/alist
+rm -rf feeds/luci/applications/luci-app-alist
+git clone --depth=1 https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+git clone --depth=1 https://github.com/sbwml/luci-app-alist package/alist
+
+# passwall
+rm -rf feeds/luci/applications/luci-app-passwall
+merge_package main https://github.com/xiaorouji/openwrt-passwall package/custom luci-app-passwall
+
+# passwall2
+# merge_package main https://github.com/xiaorouji/openwrt-passwall2 package/custom luci-app-passwall2
+
+# mihomo
+git clone --depth=1 https://github.com/morytyann/OpenWrt-mihomo package/luci-app-mihomo
+
+# homeproxy
+git clone --depth=1 https://github.com/muink/luci-app-homeproxy.git package/luci-app-homeproxy
+
+# openclash
+rm -rf feeds/luci/applications/luci-app-openclash
+merge_package master https://github.com/vernesong/OpenClash package/custom luci-app-openclash
+# merge_package dev https://github.com/vernesong/OpenClash package/custom luci-app-openclash
+# 编译 po2lmo (如果有po2lmo可跳过)
+pushd package/custom/luci-app-openclash/tools/po2lmo
+make && sudo make install
+popd
+
 # argon 主题
 rm -rf feeds/luci/themes/luci-theme-argon
 rm -rf feeds/luci/applications/luci-app-argon-config
