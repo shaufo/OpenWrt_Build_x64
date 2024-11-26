@@ -66,10 +66,6 @@ merge_package master https://github.com/xiangfeidexiaohuo/extra-ipk package/cust
 # luci-app-adbyby-plus
 rm -rf feeds/packages/net/adbyby-plus
 rm -rf feeds/luci/applications/luci-app-adbyby-plus
-#git clone -b openwrt-23.05 https://github.com/shidahuilang/openwrt-package.git
-#mkdir -p package/luci-app-adbyby-plus
-#mv openwrt-package/luci-app-adbyby-plus package/luci-app-adbyby-plus
-#rm -rf openwrt-package
 git clone https://github.com/kiddin9/kwrt-packages
 mkdir -p package/luci-app-adbyby-plus
 mv kwrt-packages/luci-app-adbyby-plus package/luci-app-adbyby-plus
