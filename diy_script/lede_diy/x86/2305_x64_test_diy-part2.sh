@@ -66,7 +66,10 @@ merge_package master https://github.com/xiangfeidexiaohuo/extra-ipk package/cust
 # luci-app-adbyby-plus
 rm -rf feeds/packages/net/adbyby-plus
 rm -rf feeds/luci/applications/luci-app-adbyby-plus
-svn export https://github.com/shidahuilang/openwrt-package/tree/openwrt-23.05/luci-app-adbyby-plus package/luci-app-adbyby-plus
+git clone -b openwrt-23.05 https://github.com/shidahuilang/openwrt-package.git
+mkdir -p package/luci-app-adbyby-plus
+mv openwrt-package/luci-app-adbyby-plus package/luci-app-adbyby-plus
+rm -rf openwrt-package
 
 # frpc frps
 rm -rf feeds/luci/applications/{luci-app-frpc,luci-app-frps,luci-app-hd-idle,luci-app-adblock,luci-app-filebrowser}
