@@ -352,7 +352,7 @@ jobs:
           - 🔑 默认密码：无密码
           - 🧊 更新时间：${{ env.date }}
           - 🎈 源码哈希值：${{ env.hash }}
-          https://github.com/gxnas/OpenWrt_Build_x64/releases/tag/${{ env.FILE_NAME }}
+          https://github.com/shaufo/OpenWrt_Build_x64/releases/tag/${{ env.FILE_NAME }}
 
     - name: Push notification upload success
       uses: xhnmt/pushplus-action@main
@@ -371,4 +371,4 @@ jobs:
           - 🔑 默认密码：无密码
           - 🧊 更新时间：${{ env.date }}
           - 🎈 源码哈希值：${{ env.hash }}
-          https://github.com/gxnas/OpenWrt_Build_x64/releases/tag/${{ env.FILE_NAME }}
+          https://github.com/shaufo/OpenWrt_Build_x64/releases/tag/${{ env.FILE_NAME }}
