@@ -7,8 +7,7 @@
 #===============================================
 
 # Add a feed source
-sed -i "/helloworld/d" feeds.conf.default
-sed -i '$a src-git kenzok8 https://github.com/kenzok8/small-package' feeds.conf.default
+sed -i '$a src-git gxnas https://github.com/gxnas/OpenWrt-Packages' feeds.conf.default
 
 mkdir wget
 
