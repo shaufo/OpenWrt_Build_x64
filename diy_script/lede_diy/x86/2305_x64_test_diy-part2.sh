@@ -10,6 +10,12 @@ echo "开始 DIY2 配置……"
 echo "========================="
 build_date=$(TZ=Asia/Shanghai date "+%Y.%m.%d")
 
+# 移除要替换的包
+rm -rf feeds/packages/net/{xray-core,v2ray-core,v2ray-geodata,sing-box,adguardhome,socat}
+rm -rf feeds/packages/net/alist feeds/luci/applications/luci-app-alist
+rm -rf feeds/packages/utils/v2dat
+rm -rf feeds/packages/lang/golang
+
 # Git稀疏克隆，只克隆指定目录到本地
 chmod +x $GITHUB_WORKSPACE/diy_script/function.sh
 source $GITHUB_WORKSPACE/diy_script/function.sh
@@ -57,12 +63,9 @@ if [ "$curl_ver" != "8.9.1" ]; then
     cp -rf $GITHUB_WORKSPACE/personal/curl feeds/packages/net/curl
 fi
 
-# 报错修复
-rm -rf staging_dir build_dir
-rm -rf feeds/packages/utils/v2dat
-rm -rf package/feeds/packages/adguardhome
-rm -rf feeds/luci/applications/luci-app-turboacc
-merge_package master https://github.com/xiangfeidexiaohuo/extra-ipk package/custom luci-app-adguardhome patch/luci-app-turboacc patch/wall-luci/lua-maxminddb patch/wall-luci/luci-app-vssr
+# golong1.23依赖
+#git clone --depth=1 https://github.com/sbwml/packages_lang_golang -b 22.x feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 23.x feeds/packages/lang/golang
 
 # luci-app-adbyby-plus
 rm -rf feeds/packages/net/adbyby-plus
