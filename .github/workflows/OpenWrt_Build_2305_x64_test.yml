@@ -125,7 +125,6 @@ jobs:
         sudo -E apt-get -qq clean
         sudo -E git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
         sudo -E git config --global core.abbrev auto
-
         sudo sed -i '/NVM_DIR/d;/skel/d' /root/{.bashrc,.profile}
         sudo rm -rf ~/{.cargo,.dotnet,.rustup}
         sudo timedatectl set-timezone "$TZ"
