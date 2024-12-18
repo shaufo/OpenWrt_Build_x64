@@ -36,7 +36,7 @@ env:
 
 jobs:
   CheckRepo:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     env:
       REPO_URL_Lede: https://github.com/coolsnowwolf/lede
       REPO_BRANCH_Lede: master
@@ -78,7 +78,7 @@ jobs:
   Build_2305_x64_all:
     needs: [CheckRepo]
     if: ${{ needs.CheckRepo.outputs.output != 'hello' || github.event.inputs.checkupdates66 == 'true'}}
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
 
     steps:
     - name: Checkout
@@ -110,35 +110,14 @@ jobs:
         sudo -E rm -f /swapfile
         sudo -E snap set system refresh.retain=2
         sudo -E rm -rf /usr/share/dotnet /etc/apt/sources.list.d /usr/local/lib/android
-        sudo -E apt-get -y purge azure-cli ghc* llvm* firefox google* dotnet* powershell openjdk* mongodb* docker* || true
+        sudo -E apt-get -y purge azure-cli ghc* zulu* llvm* firefox google* dotnet* powershell openjdk* mongodb* moby* || true
         [ -n "$AGENT_TOOLSDIRECTORY" ] && sudo rm -rf "$AGENT_TOOLSDIRECTORY"
-    
-        # Fix sources.list
-        sudo bash -c 'cat > /etc/apt/sources.list <<EOF
-        deb http://archive.ubuntu.com/ubuntu jammy main restricted universe multiverse
-        deb http://archive.ubuntu.com/ubuntu jammy-updates main restricted universe multiverse
-        deb http://archive.ubuntu.com/ubuntu jammy-security main restricted universe multiverse
-        deb http://archive.ubuntu.com/ubuntu jammy-backports main restricted universe multiverse
-        EOF'
-    
-        sudo apt-get update
-    
-        # Install essential packages
-        sudo apt-get install -y software-properties-common gcc g++ make curl wget
-    
-        # Manual installation of OpenJDK
-        wget https://download.java.net/java/GA/jdk17/0d1cfde4252546c693194d0bdbb5f7f1/36/GPL/openjdk-17_linux-x64_bin.tar.gz
-        sudo mkdir -p /usr/lib/jvm
-        sudo tar -xvf openjdk-17_linux-x64_bin.tar.gz -C /usr/lib/jvm
-        sudo update-alternatives --install /usr/bin/java java /usr/lib/jvm/jdk-17/bin/java 1
-    
-        # Manual installation of Docker
-        curl -fsSL https://get.docker.com -o get-docker.sh
-        sudo sh get-docker.sh
-    
-        # Clean up
+        sudo -E apt-get update
+        sudo -E apt-get -y install $(curl -fsSL https://is.gd/depends_ubuntu_2204)
+        sudo -E apt-get -y install libfuse-dev clang
         sudo -E apt-get -y autoremove --purge
         sudo -E apt-get clean
+        sudo sed -i '/NVM_DIR/d;/skel/d' /root/{.bashrc,.profile}
         sudo rm -rf ~/{.cargo,.dotnet,.rustup}
         sudo timedatectl set-timezone "$TZ"
         df -Th
